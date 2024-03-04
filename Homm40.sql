@@ -32,20 +32,5 @@ UPDATE suppliers
 SET balance = balance - @pay_sum
 WHERE id = @supplier_id;
 COMMIT;
--- 5
 
-START TRANSACTION;
-SET @action_date = '2017-03-14 11:00:00';
-SET @product_id = 24;
-SET @supplier_id = 2;
-SET @qty = 14;
-SET @price = 161;
-INSERT INTO actions (action_date, product_id, supplier_id, qty, price)
-VALUES (@action_date, @product_id, @supplier_id, @qty, @price);
-UPDATE suppliers
-SET income_sum = income_sum + @qty * @price,
-    balance = balance + @qty * @price
-WHERE
-  id = @supplier_id;
-COMMIT;
 
